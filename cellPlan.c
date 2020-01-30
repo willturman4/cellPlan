@@ -20,47 +20,45 @@ int main(void) {
 	double averageMonthlyUse;
 	double monthlyUse;
 	
-	printf("Enter the number of GB in your data plan:");
+	printf("Enter the number of GB in your data plan:\n");
 	scanf("%lf", &numberOfGB);
 	
-	printf("Enter the current day in the 30 day period:");
+	printf("Enter the current day in the 30 day period:\n");
 	scanf("%lf", &currentDay);
 	
-	printf("Enter the total number of GB's used so far:");
+	printf("Enter the total number of GB's used so far:\n");
 	scanf("%lf", &GBUsed);
 	
-	daysRemaining== 30-currentDay;
+	daysRemaining= 30-currentDay;
 	
-	averageDailyUse== GBUsed/currentDay;
+	averageDailyUse= GBUsed/currentDay;
 	
 	averageMonthlyUse= numberOfGB/30;
 	
-	remainingGB== numberOfGB-GBUsed;
+	remainingGB= numberOfGB-GBUsed;
 	
-	suggestedGBPlan==remainingGB/daysRemaining;
+	suggestedGBPlan=remainingGB/daysRemaining;
 	
-	monthlyUse== averageDailyUse/30;
+	monthlyUse= (averageDailyUse*30)-numberOfGB;
 	
-	printf("%lf days used, %lf days remaining", currentDay, daysRemaining);
-	printf("Average daily use: %lf GB/day", averageDailyUse);
+	printf("%lf days used, %lf days remaining\n", currentDay, daysRemaining);
+	printf("Average daily use: %lf GB/day\n", averageDailyUse);
 	
-	if(averageDailyUse>averageMonthlyUse) {
-		printf("You are EXCEEDING your average daily use (%lf GB/day), Continuing this high usage, you'll exceed your data plan by (%lf) GB", averageMonthlyUse, monthlyUse);
+	if(averageDailyUse>=averageMonthlyUse && remainingGB>0) {
+		printf("You are EXCEEDING your average daily use (%lf GB/day), Continuing this high usage, you'll exceed your data plan by (%lf) GB\n", averageMonthlyUse, monthlyUse);
 		
-		printf("To stay below your data plan, use no more than %lf GB/day.", suggestedGBPlan);
+		printf("To stay below your data plan, use no more than %lf GB/day.\n", suggestedGBPlan);
 	}
-	if(averageDailyUse==averageMonthlyUse) {
-		printf("You are ACCEPTABLE for your average daily use (averageMonthlyUse GB/day), Continuing this usage, you'll use up exactly all your data", );
+	else if(averageDailyUse==averageMonthlyUse) {
+		printf("You are ACCEPTABLE for your average daily use (%lf GB/day), \n", averageMonthlyUse);
 		
-		printf("To stay below your data plan, use no more than suggestedGBPlan GB/day.");
+		printf("To stay below your data plan, use no more than %lf GB/day.\n", suggestedGBPlan);
 	}
-	if(averageDailyUse<averageMonthlyUse) {
-		printf("You are UNDER for your average daily use (averageMonthlyUse GB/day), Continuing this low usage, you'll have (monthlyUse) GB left over");
-	
-		printf("To stay below your data plan, use no more than suggestedGBPlan GB/day.");
+	else if(averageDailyUse<=averageMonthlyUse) {
+		printf("You are UNDER for your average daily use (%lf GB/day), You can use up to %lf GB/day and stay below your data plan limit\n", averageMonthlyUse, suggestedGBPlan);
 	}
-	if (numberOfGB<GBUsed) {
-		printf("You are currently out of data");
+	if (0>=remainingGB) {
+		printf("You are currently out of data\n");
 	}
 	
 	return 0;
